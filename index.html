@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Central de solicitações de manutenção da Nordeste Office.">
+    <title>Nordeste Office | Solicitações de Manutenção</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a class="marca" href="#" aria-label="Nordeste Office - início">
+                <span class="marca-icone" aria-hidden="true">NO</span>
+                <span class="marca-texto">NORDESTE <strong>OFFICE</strong></span>
+            </a>
+            <span class="topo-status"><span class="status-ponto"></span> Central de atendimento interno</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="apresentacao">
+            <div>
+                <p class="sobretitulo">SUPORTE TÉCNICO</p>
+                <h1>Central de Solicitações<br class="quebra-desktop"> de Manutenção</h1>
+                <p class="introducao">Registre problemas em equipamentos da empresa e acompanhe os chamados cadastrados nesta página.</p>
+            </div>
+            <div class="apresentacao-selo" aria-hidden="true">
+                <span class="selo-icone">⚙</span>
+                <span>Nordeste Office</span>
+            </div>
+        </section>
+
+        <section class="painel formulario-painel" aria-labelledby="titulo-formulario">
+            <div class="titulo-secao">
+                <div>
+                    <p class="sobretitulo">NOVO REGISTRO</p>
+                    <h2 id="titulo-formulario">Solicitar manutenção</h2>
+                    <p class="texto-apoio">Preencha os campos abaixo para registrar um chamado.</p>
+                </div>
+                <span class="etapa">01 / CADASTRO</span>
+            </div>
+
+            <form id="formulario-chamado" novalidate>
+                <div class="grade-formulario">
+                    <div class="campo">
+                        <label for="nome">Nome do solicitante <span>*</span></label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex.: Maria da Silva" minlength="3" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail corporativo <span>*</span></label>
+                        <input type="email" id="email" name="email" placeholder="nome@nordesteoffice.com.br" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="setor">Setor <span>*</span></label>
+                        <select id="setor" name="setor" required>
+                            <option value="">Selecione...</option>
+                            <option>Administrativo</option>
+                            <option>Financeiro</option>
+                            <option>Comercial</option>
+                            <option>Tecnologia</option>
+                            <option>Recursos Humanos</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="equipamento">Equipamento <span>*</span></label>
+                        <select id="equipamento" name="equipamento" required>
+                            <option value="">Selecione...</option>
+                            <option>Computador</option>
+                            <option>Notebook</option>
+                            <option>Impressora</option>
+                            <option>Projetor</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="patrimonio">Número de patrimônio <span>*</span></label>
+                        <input type="text" id="patrimonio" name="patrimonio" placeholder="Ex.: PAT-2048" minlength="4" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="problema">Tipo de problema <span>*</span></label>
+                        <select id="problema" name="problema" required>
+                            <option value="">Selecione...</option>
+                            <option>Não liga</option>
+                            <option>Lentidão</option>
+                            <option>Falha de impressão</option>
+                            <option>Problema de conexão</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="campo campo-prioridade">
+                        <label for="prioridade">Prioridade <span>*</span></label>
+                        <select id="prioridade" name="prioridade" required>
+                            <option value="">Selecione...</option>
+                            <option value="Baixa">Baixa</option>
+                            <option value="Média">Média</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+                    </div>
+
+                    <div class="campo campo-descricao">
+                        <div class="label-linha">
+                            <label for="descricao">Descrição do problema <span>*</span></label>
+                            <small>15 a 300 caracteres</small>
+                        </div>
+                        <textarea id="descricao" name="descricao" rows="4" minlength="15" maxlength="300"
+                            placeholder="Descreva o que está acontecendo com o equipamento..." required></textarea>
+                        <small class="contador-caracteres"><span id="caracteres">0</span>/300 caracteres</small>
+                    </div>
+                </div>
+
+                <div id="mensagem" class="mensagem" role="status" aria-live="polite"></div>
+
+                <div class="acoes-formulario">
+                    <p><span>*</span> Campos obrigatórios</p>
+                    <button class="botao-principal" type="submit">Registrar solicitação <span aria-hidden="true">→</span></button>
+                </div>
+            </form>
+        </section>
+
+        <section class="secao-chamados" aria-labelledby="titulo-chamados">
+            <div class="cabecalho-chamados">
+                <div>
+                    <p class="sobretitulo">ACOMPANHAMENTO</p>
+                    <h2 id="titulo-chamados">Solicitações registradas</h2>
+                    <p class="texto-apoio">Os chamados desta demonstração ficam disponíveis enquanto a página estiver aberta.</p>
+                </div>
+                <div class="contador-painel">
+                    <strong id="total-chamados">0</strong>
+                    <span>chamados</span>
+                </div>
+            </div>
+
+            <div id="lista-chamados" class="lista-chamados">
+                <div id="estado-vazio" class="estado-vazio">
+                    <span class="vazio-icone" aria-hidden="true">▤</span>
+                    <strong>Nenhuma solicitação por enquanto</strong>
+                    <p>Quando um chamado for registrado, ele aparecerá aqui.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p><strong>Nordeste Office</strong> · Central de Solicitações de Manutenção</p>
+        <span>Atividade prática · Desenvolvimento Web</span>
+    </footer>
+</body>
+</html>
